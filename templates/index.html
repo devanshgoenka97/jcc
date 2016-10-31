@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}URL Shortener{% endblock %}
+{% block title %}Junior Code Cracker 2016{% endblock %}
 
 {% block content %}
 <script>
@@ -9,20 +9,23 @@
 <div class="panel panel-default">
  <div class="panel-body">
  <div class="col-sm-9">
- <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.facebook.com" />
+ <input type="text" name="Team name" id="team" class="form-control input-sm" placeholder="Team Name" />
+ <input type="text" name="Contestant name 1" id="c1" class="form-control input-sm" placeholder="Contestant 1" />
+ <input type="text" name="Contestant name 2" id="c2" class="form-control input-sm" placeholder="Contestant 2" />
+  <input type="text" name="Phone Number" id="phone" class="form-control input-sm" placeholder="Contact Number" />
  </div>
  <div class="col-sm-3">
  {% csrf_token %}
  <button id="submitButton" class="btn btn-primary">Submit</button></p>
  </div>
  </div>
- <div class="panel-footer"><span id="url-result">Enter the URL above and click submit!</span></div>
+ <div class="panel-footer"><span id="url-result">Enter the details above and click submit!</span></div>
 </div>
 <div class="col-sm-3">
  <button  id="clipboard" class="btn btn-primary" style="margin-bottom:12px">
  	Copy to Clipboard</button>
-  <button  id="facebook" class="btn btn-primary" style="margin-bottom:12px">
+ <!-- <button  id="facebook" class="btn btn-primary" style="margin-bottom:12px">
  	<i class="fa fa-facebook"></i></button>
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://devansh.pythonanywhere.com" data-text="URL Shortener desgined by Devansh Goenka" data-size="large" style="position:absolute">Tweet</a>
-</div>
+</div>-->
 {% endblock %}

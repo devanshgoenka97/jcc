@@ -26,31 +26,26 @@ def index(request):
     c.update(csrf(request))
     return render_to_response('index.html', c)
  
-def redirect_original(request, short_id):
-    url = get_object_or_404(urls, pk=short_id) # get object, if not found return 404 error
-    url.count += 1
-    url.save()
-    return HttpResponseRedirect(url.httpurl)
- 
 def shorten_url(request):
-    url = request.POST.get("url", '')
-    validate = URLValidator()
-    url = url.lower()
-    if not (url == ''):
-        if url.startswith('https://'):
-            url = "http://" + url[8:]
-        if not (url.startswith('http://')):
-            url = "http://" + url
-        short_id = (hashlib.md5(url.encode())).hexdigest()
-        short_id = int(short_id,16)
-        short_id = encode_base(short_id)
-        try :
-            validate(url)
-        except ValidationError, e:
-            return HttpResponse(json.dumps({"inval":"Invalid URL"}),  content_type="application/json")
-        b = urls(httpurl=url, short_id=short_id)
-        b.save()
-        response_data = {}
-        response_data['url'] = settings.SITE_URL + "/" + short_id
-        return HttpResponse(json.dumps(response_data),  content_type="application/json")
-    return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
+     team = request.POST.get("teamname", '')
+     p1 = request.POST.get("c1", '')
+     p2 = request.POST.get("c2", '')
+     cont = request.POST.get("phone", '')
+     if team=='' :
+        return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
+     if p1=='' :
+        return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
+     if p2=='' :
+        return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
+     if cont=='' :
+        return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
+     alphanum=team +cont
+     short = (hashlib.md5(alphanum.encode())).hexdigest()
+     short = int(short,16)
+     short = encode_base(short)
+     b = urls(teamname=team, short_id=short,contestant1=p1,contestant2=p2,contact=cont)
+     b.save()
+     response_data = {}
+     response_data['uid'] = short
+     return HttpResponse(json.dumps(response_data),  content_type="application/json")
+        #return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")

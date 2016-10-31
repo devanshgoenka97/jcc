@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>{% block title %}Welcome to URLShortener{% endblock %}</title>
+ <title>{% block title %}Welcome to Junior Code Cracker 2016{% endblock %}</title>
  {% load staticfiles %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -64,14 +64,16 @@ $(document).bind('keypress', function(e) {
                  $('#submitButton').trigger('click');
              }
         });
-
  $(function(){
  $('#submitButton').click(function() {
  $.ajax({
  type: "POST",
  url: "/makeshort/",
  data: {
- 'url' : $('#url').val(),
+ 'teamname' : $('#team').val(),
+ 'c1' : $('#c1').val(),
+ 'c2' : $('#c2').val(),
+ 'phone' : $('#phone').val(),
  'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
  },
  success: returnSuccess,
@@ -81,21 +83,19 @@ $(document).bind('keypress', function(e) {
  });
 
 function returnSuccess(data) {
- if(data.url) {
- $('#url-result').html("Your Shorted URL is : <a href='"+data.url+"'>"+data.url+"</a>");
- $('#url').val("");
- }
- else if(data.inval)
- {
-  $('#url').val("");
-  alert("Invalid URL!");
+ if(data.uid) {
+ $('#url-result').html("Your unique team id is : "+data.uid+" .Please note it down on the slip!");
+ $('#team').val("");
+ $('#c1').val("");
+ $('#c2').val("");
+ $('#phone').val("");
  }
  else {
  alert("Empty Field");
  }
 
  $("#clipboard").click(function(){
-  copyToClipboard("#url-result a");
+  copyToClipboard("#url-result");
      });
 
  $("#facebook").click(function(){
@@ -118,9 +118,9 @@ function returnSuccess(data) {
 <body>
 <div id="wrap">
 <header>
- <div class="main"><h1 style="margin-left:10px"><a href="#">URL Shortener</a></h1>
+ <div class="main"><h1 style="margin-left:10px"><a href="#">Registration form for JCC 2016!</a></h1>
  </div>
- <div class="sub"><h1><small>Shorten the URL</small></h1>
+ <div class="sub"><h1><small>Register now in teams of 2!</small></h1>
  </div>
 </header>
 
