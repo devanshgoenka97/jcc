@@ -48,7 +48,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_DIRS = (
 
-       '',
+       'templates',
 )
 ROOT_URLCONF = 'URLshortener.urls'
 

@@ -7,6 +7,7 @@ from django.core.context_processors import csrf
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 import hashlib
+import urllib2, urllib
 
 ARR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -45,6 +46,19 @@ def shorten_url(request):
      short = encode_base(short)
      b = urls(teamname=team, short_id=short,contestant1=p1,contestant2=p2,contact=cont)
      b.save()
+     auth_key = '144872AoGnBaVgqLh59f59619'
+     message = 'Your unique team ID for JCC 2017 is ' + short + '. Kindly take note and submit this at the event.'
+     data = {
+        'authkey':auth_key,
+        'mobiles':cont,
+        'message':message,
+        'sender':'GNULUG',
+        'route':'4',
+     }
+     url = 'http://sms.globehost.com/api/sendhttp.php?'
+     req = urllib2.Request(url,urllib.urlencode(data));
+     response = urllib2.urlopen(req)
+     result = response.read().decode()
      response_data = {}
      response_data['uid'] = short
      return HttpResponse(json.dumps(response_data),  content_type="application/json")
