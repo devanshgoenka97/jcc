@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>{% block title %}Welcome to Junior Code Cracker 2016{% endblock %}</title>
+ <title>{% block title %}Welcome to Junior Code Cracker 2017{% endblock %}</title>
  {% load staticfiles %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -12,12 +12,25 @@
 <meta property="og:description"        content="Created by Devansh Goenka" />
 </head>
 <style type="text/css">
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .sub {
   display: inline-block;
 }
 
 .main{
   display: inline-block;
+}
+
+#submitButton{
+  width: 49%;
+}
+
+#clipboard{
+  width: 49%;
 }
 
 @media (min-width: 300px) and (max-width: 900px){
@@ -40,7 +53,7 @@
   }
 }
 </style>
-<script>
+<!--<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '726217524148407',
@@ -56,7 +69,7 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>
+</script>-->
 
 <script type="text/javascript">
 $(document).bind('keypress', function(e) {
@@ -118,10 +131,14 @@ function returnSuccess(data) {
 <body>
 <div id="wrap">
 <header>
- <div class="main"><h1 style="margin-left:10px"><a href="#">Registration form for JCC 2016!</a></h1>
- </div>
- <div class="sub"><h1><small>Register now in teams of 2!</small></h1>
- </div>
+ <div class="row">
+   <div class="col-md-12 text-center">
+    <div class="main"><h1 style="margin-left:10px"><a href="#">Register for JCC 2017!</a></h1></div>
+   </div>
+   <div class="col-md-12 text-center">
+     <div class="sub"><h1><small>Register now in teams of 2!</small></h1></div>
+   </div>
+</div>
 </header>
 
 <div id="content2">
