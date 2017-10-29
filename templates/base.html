@@ -103,8 +103,8 @@ function returnSuccess(data) {
  $('#c2').val("");
  $('#phone').val("");
  }
- else {
- alert("Empty Field");
+ if(data.err){
+ alert(data.err);
  }
 
  $("#clipboard").click(function(){
