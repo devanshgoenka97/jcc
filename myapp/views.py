@@ -74,9 +74,8 @@ def shorten_url(request):
      response_data = {}
      try:
         response = urllib2.urlopen(req)
+        response_data['err'] = "Message sent to registered number!"
      except urllib2.HTTPError as e:
         result = response.read()
-     else:
-        response_data['err'] = "Message sent to registered number!"
      response_data['uid'] = short
      return HttpResponse(json.dumps(response_data),  content_type="application/json")
