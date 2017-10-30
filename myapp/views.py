@@ -71,9 +71,12 @@ def shorten_url(request):
      }
      url = 'http://sms.globehost.com/api/sendhttp.php?'
      req = urllib2.Request(url,urllib.urlencode(data));
-     response = urllib2.urlopen(req)
-     result = response.read().decode()
      response_data = {}
+     try:
+        response = urllib2.urlopen(req)
+     except urllib2.HTTPError as e:
+        result = response.read()
+     else:
+        response_data['err'] = "Message sent to registered number!"
      response_data['uid'] = short
      return HttpResponse(json.dumps(response_data),  content_type="application/json")
-        #return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
